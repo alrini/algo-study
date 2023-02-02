@@ -13,3 +13,6 @@ def solution(scores):
             answer+=1
 
     return answer
+
+    # 테스트 3, 테스트 8, 테스트 10, 테스트 11, 테스트 14, 테스트 16, 테스트 22 실패
+    # 정확성 72.0
