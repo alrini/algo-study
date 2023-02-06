@@ -8,3 +8,6 @@ def solution(n, left, right):
 
     answer = answer[left:right+1]
     return answer
+
+# 시간초과로 인해 정확성 30.0
+# 합계: 30.0 /  100.0
