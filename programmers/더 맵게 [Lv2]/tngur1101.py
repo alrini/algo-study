@@ -17,6 +17,9 @@ def solution(scoville, K):
         scov = a+b*2
         heapq.heappush(scoville, scov)
         answer += 1
+        if len(scoville) == 1 and scoville[0]<K:    #scoville 배열의 길이가 1이면서 scoville이 K보다 작을 때 즉, 높을 수 없을때
+            return -1
+
     
     return answer
 
