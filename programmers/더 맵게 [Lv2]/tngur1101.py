@@ -23,6 +23,4 @@ def solution(scoville, K):
     
     return answer
 
-# 정확성: 65.4
-# 효율성: 19.2
-# 합계: 84.6 / 100.0
+# 문제 통과
