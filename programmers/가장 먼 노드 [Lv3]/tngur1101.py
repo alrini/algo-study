@@ -22,6 +22,8 @@ def solution(n, edge):
                 distance[index] = distance[node]+1
                 
     max_distance = max(distance)
-    answer = max_distance
+    for dist in distance:
+        if dist == max_distance:
+            answer += 1
     
     return answer
