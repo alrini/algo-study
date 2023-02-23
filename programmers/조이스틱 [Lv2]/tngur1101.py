@@ -12,7 +12,9 @@ def solution(name):
         cnt = idx + 1
         while cnt < len(name) and name[cnt] == "A":
             cnt += 1
-            
+
+        # B B A A B B B
+        # A A B B A C B    
         l_r_move = min([l_r_move, idx+idx+(len(name) - cnt), idx + 2*(len(name)-cnt)])
     
     answer += l_r_move
