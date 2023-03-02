@@ -1,18 +1,23 @@
 def solution(stones, k):
     answer = 0
-    while(True):
-        answer += 1
-        for i in range(lne(stones)):
-            if stones[i]==0:
-                continue
+    left = 0
+    right = 200000000
+    
+    while left<=right:
+        arr = stones
+        mid = (left+right)//2
+        cnt = 0
+        for idx in arr:
+            if idx - mid <= 0:
+                cnt += 1
             else:
-                stones[i]-=1
-
-            count = 0
-            for stone in stones:
-                if stone == 0:
-                    count += 1
-                    if count == k:
-                        return answer
-                else:
-                    count = 0
+                cnt = 0
+            if cnt >= k:
+                break
+        if cnt >= k:
+            right = mid -1
+        else:
+            left = mid + 1
+        
+    answer = left
+    return answer
