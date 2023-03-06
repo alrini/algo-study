@@ -6,11 +6,16 @@ def solution(numbers):
     # 예외
     # 7 => 111로 모두 1로 이루어져 있어 앞에 0을 붙여줘야 함
     for num in numbers:
-        temp = list(bin(num))[2:]
         if num%2 == 0:
+            temp = list(bin(num))[2:]
             temp[-1]="1"
         else:
-            pass
+            temp = bin(num)[2:]
+            temp = "0"+temp
+            z_idx = temp.rindex("0")
+            temp = list(temp)
+            temp[z_idx] = "1"
+            temp[z_idx+1]="0"
         a_num = int("".join(temp),2)
         answer.append(a_num)
     return answer
