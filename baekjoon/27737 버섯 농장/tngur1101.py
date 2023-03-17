@@ -1,44 +1,41 @@
 from collections import deque
 
-N,M,K = map(int, input().split())
-arr = []
-for i in range(N):
-    arr.append(list(map(int, input().split())))
+n,m,k = map(int,input().split())
+field = [list(map(int,input().split())) for _ in range(n)]
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
 
-dir = [[0,1],[0,-1],[1,0],[-1,0]]
-
-answer = 0
-
-def bfs(posy,posx):
-    queue = deque
-    queue.append(posy,posx)
-    arr[posy][posx]=1
+def bfs(posx,posy):
+    global min_cnt
+    queue = deque()
+    queue.append((posx,posy))
+    field[posx][posy] = 1
     cnt = 1
-    while True:
-        if len(queue)==0:
-            break
-        ny, nx = queue.pop()
-        for d in dir:
-            nexty, nextx = ny + d[0], nx + d[1]
-            if nexty < 0 or nextx < 0 or nexty>=n or nextx>=n:
-                continue
-            if arr[nexty][nextx] == 1:
-                continue
-            arr[nexty][nextx] = 1
-            cnt += 1
-            queue.append(nexty,nextx)
-    return cnt
 
-for i in range(N):
-    for j in range(N):
-        if arr[i][j] == 0:
-            cnt = bfs(i,j)
-            answer += int(cnt/k)
-            if cnt%k != 0:
-                answer += 1
+    while queue:
+        pos = queue.popleft()
+        for i in range(4):
+            x = pos[0] + dx[i]
+            y = pos[1] + dy[i]
+            if 0<=x<n and 0<=y<n and not field[x][y]:
+                field[x][y]=1
+                cnt += 1
+                queue.append((x,y))
 
-if answer>M or answer == 0:
-    print("IMPOSSIBLE")
+    if cnt%k == 0:
+        min_cnt -= cnt//k
+    else:
+        min_cnt -= cnt//k+1
+
+min_cnt = m
+
+for i in range(n):
+    for j in range(n):
+        if not field[i][j]:
+            bfs(i,j)
+
+if min_cnt < 0 or m == min_cnt:
+    print('IMPOSSIBLE')
 else:
-    print("POSSIBLE")
-    print(M-answer)
+    print('POSSIBLE')
+    print(min_cnt)
