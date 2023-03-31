@@ -36,7 +36,7 @@ for pos in range(1,n+1):
     for cheese in range(m+1):
         for potato in range(k+1):
             if cheese>=cheese_burger and potato>=potato_chips:
-                dp[pos][cheese][potato] = max(1+dp[pos-1][cheese][potato], dp[pos-1][cheese][potato])
+                dp[pos][cheese][potato] = max(1+dp[pos-1][cheese-cheese_burger][potato-potato_chips], dp[pos-1][cheese][potato])
             else:
                 dp[pos][cheese][potato] = dp[pos-1][cheese][potato]
             answer = dp[pos][cheese][potato]
